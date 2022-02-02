@@ -10,11 +10,12 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CarRegistration
+namespace CarRegistration.Views
 {
-    public partial class LoginWindow : Window
+    public partial class LoginPage : UserControl
     {
         App currentApp;
         UserService UserService;
@@ -22,12 +23,12 @@ namespace CarRegistration
         TextBox UsernameTextBox;
         PasswordBox PasswordBoxValue;
 
-        public LoginWindow()
+        public LoginPage()
         {
             InitializeComponent();
             UserService = new UserService();
             currentApp = (App)App.Current;
-            UsernameTextBox = (TextBox) this.FindName("UserNameTextBox");
+            UsernameTextBox = (TextBox)this.FindName("UserNameTextBox");
             PasswordBoxValue = (PasswordBox)this.FindName("PasswordBox");
         }
 

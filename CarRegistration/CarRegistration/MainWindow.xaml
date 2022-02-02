@@ -15,6 +15,9 @@
         <DataTemplate x:Name="UpdateCarFormTemplate" DataType="{x:Type viewmodels:UpdateCarFormViewModel}">
             <views:UpdateCarForm DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="LoginPageTemplate" DataType="{x:Type viewmodels:LoginPageViewModel}">
+            <views:LoginPage DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -30,7 +33,7 @@
 
         <DockPanel Background="Gray" Grid.Row="0" Grid.Column="0">
             <StackPanel Orientation="Horizontal" >
-                <Button Content="Login"  Margin="5"/>
+                <Button Content="Login"  Margin="5" Click="NavigateToLoginPage"/>
                 <Button Content="Browse Cars"  Margin="5"/>
                 <Button Content="Add New Car" Click="NavigateToNewCarForm" Margin="5"/>
                 <Button Content="Update Car" Click="NavigateToUpdateCarForm" Margin="5"/>
@@ -38,7 +41,6 @@
             </StackPanel>
         </DockPanel>
         <TextBlock x:Name="textBlockId" HorizontalAlignment="Left" Margin="296,150,0,0" Text="${}" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="346,158,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
         <ContentControl Grid.Row="1" Grid.Column="0" Grid.RowSpan="7" Content="{Binding}"/>
     </Grid>
