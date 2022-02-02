@@ -20,32 +20,46 @@ namespace CarRegistration.Views
         App currentApp;
         UserService UserService;
 
-        TextBox UsernameTextBox;
-        PasswordBox PasswordBoxValue;
-
         public LoginPage()
         {
             InitializeComponent();
             UserService = new UserService();
             currentApp = (App)App.Current;
-            UsernameTextBox = (TextBox)this.FindName("UserNameTextBox");
-            PasswordBoxValue = (PasswordBox)this.FindName("PasswordBox");
+            ShowComponents();
         }
 
         private void LoginClick(object sender, RoutedEventArgs e)
         {
-            Role role = UserService.CheckLogin(UsernameTextBox.Text, PasswordBoxValue.Password);
+            Role role = UserService.CheckLogin(UserNameTextBox.Text, PasswordBox.Password);
             currentApp.role = role;
             if (role != Role.User)
             {
                 LoginErrorMessage.Visibility = Visibility.Hidden;
-
-                // move to main screen
+                ShowComponents();
             }
             else
             {
                 LoginErrorMessage.Visibility = Visibility.Visible;
             }
+        }
+
+        private void ShowComponents()
+        {
+            if (currentApp.role != Role.User)
+            {
+                LoggedInLabel.Content = String.Format("Jesteś zalogowany jako: {0}", currentApp.role);
+                LoggedInGrid.Visibility = Visibility.Visible;
+                NotLoggedInGrid.Visibility = Visibility.Hidden;
+            } else
+            {
+                LoggedInGrid.Visibility = Visibility.Hidden;
+                NotLoggedInGrid.Visibility = Visibility.Visible;
+            }
+        }
+
+        private bool IsLogged()
+        {
+            return currentApp.role != Role.User;
         }
     }
 }

@@ -18,6 +18,9 @@
         <DataTemplate x:Name="LoginPageTemplate" DataType="{x:Type viewmodels:LoginPageViewModel}">
             <views:LoginPage DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="CarReportTemplate" DataType="{x:Type viewmodels:CarReportViewModel}">
+            <views:CarReportView DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -34,7 +37,7 @@
         <DockPanel Background="Gray" Grid.Row="0" Grid.Column="0">
             <StackPanel Orientation="Horizontal" >
                 <Button Content="Login"  Margin="5" Click="NavigateToLoginPage"/>
-                <Button Content="Browse Cars"  Margin="5"/>
+                <Button Content="Browse Cars"  Margin="5" Click="NavigateToBrowseCars"/>
                 <Button Content="Add New Car" Click="NavigateToNewCarForm" Margin="5"/>
                 <Button Content="Update Car" Click="NavigateToUpdateCarForm" Margin="5"/>
                 <Button Content="Add New User"  Margin="5"/>

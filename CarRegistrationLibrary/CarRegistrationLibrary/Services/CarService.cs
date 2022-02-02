@@ -49,6 +49,17 @@ namespace CarRegistrationLibrary.Services
             return history.Where(entry => entry.Vin == vin).ToList();
         }
 
+        public Car? GetCarForVin(string vin)
+        {
+            try
+            {
+                return cars.Where(entry => entry.Vin == vin).First();
+            } catch
+            {
+                return null;
+            }
+        }
+
         public void Clear()
         {
             this.cars.Clear();

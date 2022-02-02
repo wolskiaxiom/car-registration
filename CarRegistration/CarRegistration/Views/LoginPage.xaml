@@ -10,7 +10,6 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="48" />
-                <RowDefinition Height="1" />
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
@@ -18,9 +17,8 @@
                     <TextBlock Text="Witaj na ekranie logowania!" FontSize="20" Margin="8,2,0,0" FontWeight="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe WP" />
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="1" ></Grid>
-            <Grid Grid.Row="2">
-                <Grid Grid.Column="1" Visibility="Visible" Width="380">
+            <Grid Grid.Row="1">
+                <Grid Name="NotLoggedInGrid" Grid.Column="1" Width="380">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                         <Label Content="Zaloguj sie" Margin="0,4,0,12" HorizontalAlignment="Center"  FontFamily="Segoe UI Semilight" FontSize="26"></Label>
                         <Grid Margin="0,0,0,8">
@@ -29,20 +27,20 @@
                         <Grid Margin="0,0,0,8">
                             <TextBox Name="UserNameTextBox" CharacterCasing="Lower" TabIndex="0" />
                         </Grid>
-                        <StackPanel Height="34" />
                         <Grid Margin="0,0,0,8">
                             <TextBlock Margin="4,1,2,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Height="24" Text="Hasło"/>
                         </Grid>
                         <Grid Margin="0,0,0,8">
                             <PasswordBox HorizontalAlignment="Center" HorizontalContentAlignment="Center" Background="Transparent" VerticalContentAlignment="Center" Name="PasswordBox" Height="36" Width="220" TabIndex="1" />
                         </Grid>
-
-                        <StackPanel Height="34" />
                         <Button Click="LoginClick" Content="Login" Width="220" Height="36" TabIndex="3" Margin="0,0,0,32"/>
                         <Grid Margin="0,0,0,8">
                             <TextBlock Name="LoginErrorMessage" Visibility="Hidden" Margin="4,1,2,20" VerticalAlignment="Center" TextAlignment="Center" FontSize="10" Height="24" Text="Coś poszło nie tak... Spróbuj jeszcze raz!" Foreground="Red" />
                         </Grid>
                     </StackPanel>
+                </Grid>
+                <Grid x:Name="LoggedInGrid">
+                    <Label Name="LoggedInLabel" HorizontalAlignment="Center" FontSize="30">Jesteś zalogowany jako</Label>
                 </Grid>
             </Grid>
         </Grid>

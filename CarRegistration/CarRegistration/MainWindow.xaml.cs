@@ -41,5 +41,10 @@ namespace CarRegistration
         {
             DataContext = new LoginPageViewModel();
         }
+
+        private void NavigateToBrowseCars(object sender, RoutedEventArgs e)
+        {
+            DataContext = new CarReportViewModel();
+        }
     }
 }
