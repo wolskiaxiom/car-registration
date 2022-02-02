@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CarRegistration.ViewModels;
 
 namespace CarRegistration
 {
@@ -24,9 +25,16 @@ namespace CarRegistration
         {
             InitializeComponent();
             App current = (App) App.Current;
+        }
 
-            TextBlock textBlock = (TextBlock)this.FindName("textBlockId");
-            textBlock.Text = current.role.ToString();
+        private void NavigateToNewCarForm(object sender, RoutedEventArgs e)
+        {
+            DataContext = new AddNewCarFormViewModel();
+        }
+
+        private void NavigateToUpdateCarForm(object sender, RoutedEventArgs e)
+        {
+            DataContext = new UpdateCarFormViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
