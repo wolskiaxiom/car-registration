@@ -21,7 +21,7 @@ namespace CarRegistrationLibrary.Services
             savedUsers = FileUtils.LoadFile("users.db").Select(line => User.FromDbLine(line)).ToList();
         }
 
-        public Role? CheckLogin(String login, String passwordRaw)
+        public Role CheckLogin(String login, String passwordRaw)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace CarRegistrationLibrary.Services
                 return found.Role;
             } catch
             {
-                return null;
+                return Role.User;
             }
         }
 

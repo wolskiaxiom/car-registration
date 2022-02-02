@@ -28,5 +28,14 @@ namespace CarRegistration
             TextBlock textBlock = (TextBlock)this.FindName("textBlockId");
             textBlock.Text = current.role.ToString();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //this.Close();
+            //(new LoginWindow()).Show();
+            LoginWindow lc = new LoginWindow();
+            lc.Owner = this;
+            lc.Show();
+        }
     }
 }
