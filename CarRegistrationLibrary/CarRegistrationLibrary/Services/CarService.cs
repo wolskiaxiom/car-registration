@@ -51,6 +51,17 @@ namespace CarRegistrationLibrary.Services
             Flush();
         }
 
+        public void ReplaceHistoryEntry(HistoryEntry oldEntry, HistoryEntry newEntry)
+        {
+            var oldIndex = history.IndexOf(oldEntry);
+            if(oldIndex != -1)
+            {
+                history.RemoveAt(oldIndex);
+                history.Insert(oldIndex, newEntry);
+            }
+            Flush();
+        }
+
         public List<HistoryEntry> GetHistoryForVin(string vin)
         {
             return history.Where(entry => entry.Vin == vin).ToList();
