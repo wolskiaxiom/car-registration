@@ -20,18 +20,22 @@ namespace CarRegistration.Views
     /// </summary>
     public partial class CarReportView : UserControl
     {
-
+        Car? Car;
+        List<HistoryEntry> CarHistory;
         CarService CarService = new CarService();
+        App current;
+        
         public CarReportView()
         {
             InitializeComponent();
+            current = (App)App.Current;
         }
 
         private void SearchCarHistory(object sender, RoutedEventArgs e)
         {
             string vin = VinTextBox.Text;
-            Car? Car = CarService.GetCarForVin(vin);
-            List<HistoryEntry> CarHistory = CarService.GetHistoryForVin(vin);
+            Car = CarService.GetCarForVin(vin);
+            CarHistory = CarService.GetHistoryForVin(vin);
             if (Car is null)
             {
                 VinLabel.Content = "";
@@ -45,8 +49,74 @@ namespace CarRegistration.Views
                 CarNameLabel.Content = Car.Value.Name;
                 SearchResultMessage.Content = "";
                 carHistoryListBinding.ItemsSource = CarHistory;
-
+                carHistoryListBinding.Visibility = Visibility.Visible;
+                if (current.role == Role.Mechanic)
+                {
+                    FormGrid.Visibility = Visibility.Visible;
+                    ownerNameInput.Visibility = Visibility.Collapsed;
+                    ownerNameLabel.Visibility = Visibility.Collapsed;
+                } else if (current.role == Role.Clerk)
+                {
+                    FormGrid.Visibility = Visibility.Visible;
+                }
             }
+        }
+
+        private void AddHistoryEntryClick(object sender, RoutedEventArgs e)
+        {
+            long mileageVal = 0;
+            try
+            {
+                 mileageVal = long.Parse(mileageInput.Text);
+            } catch
+            {
+                return;
+            }
+            if (current.role == Role.Clerk)
+            {
+                string owner = ownerNameInput.Text;
+                HistoryEntry newEntry = new HistoryEntry(Car.Value.Vin, owner, mileageVal);
+                CarService.AddHistoryEntry(newEntry);
+                CarHistory.Add(newEntry);
+                CarService.AddHistoryEntry(newEntry);
+            } else if (current.role == Role.Mechanic)
+            {
+                HistoryEntry entry = CarHistory[CarHistory.Count - 1];
+                HistoryEntry newEntry = new HistoryEntry(entry.Vin, entry.OwnerName, mileageVal);
+                CarService.AddHistoryEntry(newEntry);
+                CarHistory.Add(newEntry);
+            }
+        }
+
+        private void carHistoryListBindingSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (current.role == Role.Clerk)
+            {
+                updateButton.Visibility = Visibility.Visible;
+                ownerNameInput.Text = CarHistory[carHistoryListBinding.SelectedIndex].OwnerName;
+                mileageInput.Text = CarHistory[carHistoryListBinding.SelectedIndex].Mileage.ToString();
+            }
+        }
+
+        private void UpdateButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(mileageInput.Text))
+            {
+                return;
+            }
+            long mileageVal = 0;
+            try
+            {
+                mileageVal = long.Parse(mileageInput.Text);
+            }
+            catch
+            {
+                return;
+            }
+
+            string owner = CarHistory[CarHistory.Count - 1].OwnerName;
+            HistoryEntry newEntry = new HistoryEntry(Car.Value.Vin, owner, mileageVal);
+            CarService.AddHistoryEntry(newEntry);
         }
     }
 }

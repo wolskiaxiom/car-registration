@@ -1,5 +1,6 @@
 ﻿using CarRegistrationLibrary.Domain;
 using CarRegistrationLibrary.Services;
+using CarRegistrationLibrary.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -47,7 +48,7 @@ namespace CarRegistration.Views
         {
             if (currentApp.role != Role.User)
             {
-                LoggedInLabel.Content = String.Format("Jesteś zalogowany jako: {0}", currentApp.role);
+                LoggedInLabel.Content = String.Format("Jesteś zalogowany jako: {0}", RoleMapper.FromRoleToString(currentApp.role));
                 LoggedInGrid.Visibility = Visibility.Visible;
                 NotLoggedInGrid.Visibility = Visibility.Hidden;
             } else
@@ -55,11 +56,6 @@ namespace CarRegistration.Views
                 LoggedInGrid.Visibility = Visibility.Hidden;
                 NotLoggedInGrid.Visibility = Visibility.Visible;
             }
-        }
-
-        private bool IsLogged()
-        {
-            return currentApp.role != Role.User;
         }
     }
 }

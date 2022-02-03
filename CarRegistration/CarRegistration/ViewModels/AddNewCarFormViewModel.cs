@@ -7,6 +7,5 @@ namespace CarRegistration.ViewModels
 {
     public class AddNewCarFormViewModel
     {
-        
     }
 }

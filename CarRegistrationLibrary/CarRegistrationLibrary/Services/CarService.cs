@@ -49,6 +49,12 @@ namespace CarRegistrationLibrary.Services
             return history.Where(entry => entry.Vin == vin).ToList();
         }
 
+
+        public HistoryEntry GetHistoryForVinAndOwnerAndMileage(string vin, string owner, string mileage)
+        {
+            return history.Where(entry => entry.Vin == vin && entry.OwnerName == owner && entry.Mileage.Equals(mileage)).First();
+        }
+
         public Car? GetCarForVin(string vin)
         {
             try

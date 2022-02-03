@@ -32,31 +32,57 @@
                 <Label Name="SearchResultMessage" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="8"/>
             </Grid>
             <Grid Grid.Row="3">
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,2,2,2" Height="60">
-                    <Label Name="VinLabel"/>
-                    <Label Name="CarNameLabel"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,2,2,2">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,2,2,2" Height="60">
+                        <Label Name="VinLabel"/>
+                        <Label Name="CarNameLabel"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="4">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                    <Grid>
-                        <ListView Name="carHistoryListBinding">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <WrapPanel>
-                                        <!--<TextBlock Text="Data: " />
+            <Grid Grid.Row="4" >
+                <StackPanel Orientation="Horizontal">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="10, 10, 10, 10">
+                        <Grid>
+                            <ListView Name="carHistoryListBinding"  Visibility="Collapsed" SelectionChanged="carHistoryListBindingSelectionChanged">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <WrapPanel>
+                                            <!--<TextBlock Text="Data: " />
                             <TextBlock Text="{Binding Date}" />-->
-                                        <TextBlock Text="Właściciel: "/>
-                                        <TextBlock Text="{Binding OwnerName}"/>
-                                        <TextBlock Text=", " />
-                                        <TextBlock Text="Przebieg: "/>
-                                        <TextBlock Text="{Binding Mileage}"/>
-                                    </WrapPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                                            <TextBlock Text="Właściciel: "/>
+                                            <TextBlock Text="{Binding OwnerName}"/>
+                                            <TextBlock Text=", " />
+                                            <TextBlock Text="Przebieg: "/>
+                                            <TextBlock Text="{Binding Mileage}"/>
+                                        </WrapPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </ScrollViewer>
+                    <Grid Background="White" Visibility="Collapsed" Name="FormGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                     
+                        <Label Name="ownerNameLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="5">Właściciel</Label>
+                        <TextBox Name="ownerNameInput"  Grid.Row="0" Grid.Column="1" Margin="5" Height="20" Width="250"/>
+
+                        <Label Name="mileageLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Grid.Row="1" Grid.Column="0">Przebieg</Label>
+                        <TextBox Name="mileageInput" Grid.Row="1" Grid.Column="1" Margin="5" Height="20" Width="250"/>
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Center">
+                            <Button Name="addButton" Margin="5" Width="80" Click="AddHistoryEntryClick">Dodaj</Button>
+                            <Button Name="updateButton" Margin="5" Width="80" Visibility="Collapsed" Click="UpdateButtonClick">Aktualizuj</Button>
+                        </StackPanel>
                     </Grid>
-                </ScrollViewer>
+                </StackPanel>
             </Grid>
         </Grid>
     </Border>
