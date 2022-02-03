@@ -26,6 +26,13 @@ namespace CarRegistrationLibrary.Services
             ).ToList();
         }
 
+        public void ChangeCarName(string vin, string newName)
+        {
+            cars.RemoveAll(car => car.Vin == vin);
+            cars.Add(new Car(vin, newName));
+            Flush();
+        }
+
         public void AddNewCar(Car car, string ownerName)
         {
             var deleted = cars.RemoveAll(_car => _car.Vin.Equals(car.Vin));
@@ -41,6 +48,17 @@ namespace CarRegistrationLibrary.Services
         public void AddHistoryEntry(HistoryEntry entry)
         {
             history.Add(entry);
+            Flush();
+        }
+
+        public void ReplaceHistoryEntry(HistoryEntry oldEntry, HistoryEntry newEntry)
+        {
+            var oldIndex = history.IndexOf(oldEntry);
+            if(oldIndex != -1)
+            {
+                history.RemoveAt(oldIndex);
+                history.Insert(oldIndex, newEntry);
+            }
             Flush();
         }
 
