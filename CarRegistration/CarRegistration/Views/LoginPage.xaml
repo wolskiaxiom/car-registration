@@ -14,7 +14,7 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,0,0" Height="40">
-                    <TextBlock Text="Witaj na ekranie logowania!" FontSize="20" Margin="8,2,0,0" FontWeight="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe WP" />
+                    <TextBlock Text="" FontSize="20" Margin="8,2,0,0" FontWeight="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe WP" />
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1">
@@ -40,7 +40,10 @@
                     </StackPanel>
                 </Grid>
                 <Grid x:Name="LoggedInGrid">
-                    <Label Name="LoggedInLabel" HorizontalAlignment="Center" FontSize="30">Jesteś zalogowany jako</Label>
+                    <StackPanel Orientation="Vertical">
+                        <Label Name="LoggedInLabel" HorizontalAlignment="Center" FontSize="30">Jesteś zalogowany jako</Label>
+                        <Button Name="LogoutButton" Margin="30" HorizontalAlignment="Center" FontSize="30" Click="LogoutButtonClick">Wyloguj</Button>
+                    </StackPanel>
                 </Grid>
             </Grid>
         </Grid>

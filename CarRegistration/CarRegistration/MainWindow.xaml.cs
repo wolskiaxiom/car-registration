@@ -33,11 +33,6 @@ namespace CarRegistration
             DataContext = new AddNewCarFormViewModel();
         }
 
-        private void NavigateToUpdateCarForm(object sender, RoutedEventArgs e)
-        {
-            DataContext = new UpdateCarFormViewModel();
-        }
-
         private void NavigateToLoginPage(object sender, RoutedEventArgs e)
         {
             DataContext = new LoginPageViewModel();

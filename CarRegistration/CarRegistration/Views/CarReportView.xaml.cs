@@ -2,6 +2,7 @@
 using CarRegistrationLibrary.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +22,7 @@ namespace CarRegistration.Views
     public partial class CarReportView : UserControl
     {
         Car? Car;
-        List<HistoryEntry> CarHistory;
+        ObservableCollection<HistoryEntry> CarHistory;
         CarService CarService = new CarService();
         App current;
         
@@ -35,7 +36,7 @@ namespace CarRegistration.Views
         {
             string vin = VinTextBox.Text;
             Car = CarService.GetCarForVin(vin);
-            CarHistory = CarService.GetHistoryForVin(vin);
+            CarHistory = new ObservableCollection<HistoryEntry>(CarService.GetHistoryForVin(vin));//CarService.GetHistoryForVin(vin).ToArray();
             if (Car is null)
             {
                 VinLabel.Content = "";
@@ -78,7 +79,6 @@ namespace CarRegistration.Views
                 HistoryEntry newEntry = new HistoryEntry(Car.Value.Vin, owner, mileageVal);
                 CarService.AddHistoryEntry(newEntry);
                 CarHistory.Add(newEntry);
-                CarService.AddHistoryEntry(newEntry);
             } else if (current.role == Role.Mechanic)
             {
                 HistoryEntry entry = CarHistory[CarHistory.Count - 1];
@@ -93,13 +93,17 @@ namespace CarRegistration.Views
             if (current.role == Role.Clerk)
             {
                 updateButton.Visibility = Visibility.Visible;
-                ownerNameInput.Text = CarHistory[carHistoryListBinding.SelectedIndex].OwnerName;
-                mileageInput.Text = CarHistory[carHistoryListBinding.SelectedIndex].Mileage.ToString();
+                if (CarHistory.Count > carHistoryListBinding.SelectedIndex && carHistoryListBinding.SelectedIndex > -1)
+                {
+                    ownerNameInput.Text = CarHistory[carHistoryListBinding.SelectedIndex].OwnerName;
+                    mileageInput.Text = CarHistory[carHistoryListBinding.SelectedIndex].Mileage.ToString();
+                }
             }
         }
 
         private void UpdateButtonClick(object sender, RoutedEventArgs e)
         {
+            int selectedIndex = carHistoryListBinding.SelectedIndex;
             if (String.IsNullOrEmpty(mileageInput.Text))
             {
                 return;
@@ -114,9 +118,11 @@ namespace CarRegistration.Views
                 return;
             }
 
-            string owner = CarHistory[CarHistory.Count - 1].OwnerName;
-            HistoryEntry newEntry = new HistoryEntry(Car.Value.Vin, owner, mileageVal);
-            CarService.AddHistoryEntry(newEntry);
+            HistoryEntry oldEntry = CarHistory[selectedIndex];
+            HistoryEntry newEntry = new HistoryEntry(Car.Value.Vin, oldEntry.OwnerName, mileageVal);
+            CarService.ReplaceHistoryEntry(oldEntry, newEntry);
+            CarHistory.RemoveAt(selectedIndex);
+            CarHistory.Insert(selectedIndex, newEntry);    
         }
     }
 }

@@ -57,5 +57,11 @@ namespace CarRegistration.Views
                 NotLoggedInGrid.Visibility = Visibility.Visible;
             }
         }
+
+        private void LogoutButtonClick(object sender, RoutedEventArgs e)
+        {
+            currentApp.role = Role.User;
+            ShowComponents();
+        }
     }
 }
