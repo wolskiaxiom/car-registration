@@ -10,17 +10,35 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CarRegistrationLibrary.Domain;
+using CarRegistrationLibrary.Services;
 
 namespace CarRegistration.Views
 {
-    /// <summary>
-    /// Logika interakcji dla klasy AddNewCarForm.xaml
-    /// </summary>
     public partial class AddNewCarForm : UserControl
     {
+        App currentApp;
+        CarService CarService;
+
         public AddNewCarForm()
         {
             InitializeComponent();
+            currentApp = (App)App.Current;
+            CarService = new CarService();
         }
+
+        private void OnFormSubmit(object sender, RoutedEventArgs e)
+        {
+            if (currentApp.role == Role.Producer)
+            {
+                Car newCar = new Car(Vin.Text, CarName.Text);
+                CarService.AddNewCar(newCar, OwnerName.Text);
+
+                Vin.Text = "";
+                OwnerName.Text = "";
+                CarName.Text = "";
+            }
+        }
+
     }
 }

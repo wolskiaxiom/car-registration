@@ -7,6 +7,36 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <TextBlock Text="Add Car Form" />
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition/>
+            <RowDefinition Height="45"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Text="Dodaj nowy pojazd" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" FontSize="30" VerticalAlignment="Center"/>
+        
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">Nazwa modelu</Label>
+        <TextBox Name="CarName" Margin="10" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" />
+
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1">Numer vin</Label>
+        <TextBox Name="Vin" Margin="10" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" />
+
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1">Właściciel</Label>
+        <TextBox Name="OwnerName" Margin="10" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" />
+        
+        <Button Name="SubmitButton" Grid.Column="2" Grid.Row="6" Click="OnFormSubmit">Dodaj</Button>
     </Grid>
 </UserControl>
