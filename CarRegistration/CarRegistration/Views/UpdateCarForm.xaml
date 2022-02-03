@@ -7,6 +7,40 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <TextBlock Text="Update Car Form" />
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Aktualizacja danych pojazdu" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" FontSize="30" VerticalAlignment="Center"/>
+
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">Nazwa modelu</Label>
+        <TextBox x:Name="carName" Margin="10" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"/>
+
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1">Numer vin</Label>
+        <TextBox x:Name="vin" Margin="10" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"/>
+
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1">Właściciel</Label>
+        <TextBox x:Name="ownerName" Margin="10" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"/>
+
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1">Przebieg</Label>
+        <TextBox x:Name="mileage" Margin="10" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2"/>
+
+        <Button x:Name="submitButton" Grid.Column="2" Grid.Row="7">Dodaj</Button>
     </Grid>
 </UserControl>
