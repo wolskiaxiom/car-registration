@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CarRegistration.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Name="UpdateCar">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -29,17 +30,17 @@
 
         <TextBlock Text="Aktualizacja danych pojazdu" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" FontSize="30" VerticalAlignment="Center"/>
 
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">Nazwa modelu</Label>
-        <TextBox x:Name="carName" Margin="10" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">Przebieg</Label>
+        <TextBox Name="Mileage" Margin="10" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"/>
+        
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Visibility="{Binding ElementName=Main, Path=isFullFormEnabled}">Nazwa modelu</Label>
+        <TextBox Name="CarName" Margin="10" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Visibility="{Binding ElementName=Main, Path=isFullFormEnabled}"/>
 
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1">Numer vin</Label>
-        <TextBox x:Name="vin" Margin="10" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" Visibility="{Binding ElementName=Main, Path=isFullFormEnabled}">Numer vin</Label>
+        <TextBox Name="Vin" Margin="10" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Visibility="{Binding ElementName=Main, Path=isFullFormEnabled}"/>
 
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1">Właściciel</Label>
-        <TextBox x:Name="ownerName" Margin="10" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"/>
-
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1">Przebieg</Label>
-        <TextBox x:Name="mileage" Margin="10" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1" Visibility="{Binding ElementName=Main, Path=isFullFormEnabled}">Właściciel</Label>
+        <TextBox Name="OwnerName" Margin="10" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Visibility="{Binding ElementName=Main, Path=isFullFormEnabled}"/>
 
         <Button x:Name="submitButton" Grid.Column="2" Grid.Row="7">Dodaj</Button>
     </Grid>

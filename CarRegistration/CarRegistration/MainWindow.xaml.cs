@@ -1,30 +1,103 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using CarRegistration.ViewModels;
+using CarRegistrationLibrary.Domain;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace CarRegistration
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : INotifyPropertyChanged
     {
+
+        private Visibility IsLoginEnabled;
+        public Visibility isLoginEnabled
+        {
+            get { return IsLoginEnabled; }
+            set
+            {
+                if(IsLoginEnabled != value)
+                {
+                    IsLoginEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private Visibility IsUpdateCarFormEnabled;
+        public Visibility isUpdateCarFormEnabled
+        {
+            get { return IsUpdateCarFormEnabled; }
+            set
+            {
+                if (IsUpdateCarFormEnabled != value)
+                {
+                    IsUpdateCarFormEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public Visibility IsAddNewCarFormEnabled;
+        public Visibility isAddNewCarFormEnabled
+        {
+            get { return IsAddNewCarFormEnabled; }
+            set
+            {
+                if (IsAddNewCarFormEnabled != value)
+                {
+                    IsAddNewCarFormEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public Visibility IsAddNewUserFormEnabled;
+        public Visibility isAddNewUserFormEnabled
+        {
+            get { return IsAddNewUserFormEnabled; }
+            set
+            {
+                if (IsAddNewUserFormEnabled != value)
+                {
+                    IsAddNewUserFormEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private Visibility IsFullFormEnabled;
+        public Visibility isFullFormEnabled
+        {
+            get { return IsFullFormEnabled; }
+            set
+            {
+                if (IsFullFormEnabled != value)
+                {
+                    IsFullFormEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
-            App current = (App) App.Current;
+            App current = (App)App.Current;
+
+            Role userRole = current.role;
+            isLoginEnabled = userRole == Role.User ? Visibility.Visible : Visibility.Collapsed;
+            isUpdateCarFormEnabled = userRole == Role.Mechanic || userRole == Role.Clerk ? Visibility.Visible : Visibility.Collapsed;
+            isAddNewCarFormEnabled = userRole == Role.Producer ? Visibility.Visible : Visibility.Collapsed;
+            isAddNewUserFormEnabled = userRole == Role.Clerk ? Visibility.Visible : Visibility.Collapsed;
+            isFullFormEnabled = userRole == Role.Clerk ? Visibility.Visible : Visibility.Collapsed;
+
+            
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void NavigateToNewCarForm(object sender, RoutedEventArgs e)

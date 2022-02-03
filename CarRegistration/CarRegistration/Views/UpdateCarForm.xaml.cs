@@ -1,26 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using CarRegistrationLibrary.Domain;
+using CarRegistrationLibrary.Services;
 
 namespace CarRegistration.Views
 {
-    /// <summary>
-    /// Logika interakcji dla klasy UpdateCarForm.xaml
-    /// </summary>
-    public partial class UpdateCarForm : UserControl
+    public partial class UpdateCarForm : UserControl 
     {
+        private App currentApp;
+
         public UpdateCarForm()
         {
             InitializeComponent();
+            currentApp = (App)App.Current;
+        }
+
+        private void OnFormSubmit(object sender, RoutedEventArgs e)
+        {
+            if (currentApp.role == Role.Clerk || currentApp.role == Role.Mechanic)
+                //TODO: ADD SERVICE AND UPDATE ACTION
+
+                Vin.Text = "";
+                OwnerName.Text = "";
+                CarName.Text = "";
+                Mileage.Text = "";
+            }
         }
     }
 }
