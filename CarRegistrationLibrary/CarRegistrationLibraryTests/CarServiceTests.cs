@@ -55,6 +55,17 @@ namespace CarRegistrationLibrary.Tests
             Assert.AreEqual(1, wholeHistory[1].Item2.Count);
         }
 
+        [Test]
+        public void ChangeCarNameTest()
+        {
+            service.AddNewCar(new Domain.Car("vin5", RandomString()), RandomString());
+
+            service.ChangeCarName("vin5", "New Name");
+
+            var name = service.GetAllCarsWithHistory().Find(car => car.Item1.Vin == "vin5").Item1.Name;
+            Assert.AreEqual("New Name", name);
+        }
+
         private string RandomString()
         {
             return Guid.NewGuid().ToString("n").Substring(0, 8);

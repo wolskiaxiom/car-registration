@@ -26,6 +26,13 @@ namespace CarRegistrationLibrary.Services
             ).ToList();
         }
 
+        public void ChangeCarName(string vin, string newName)
+        {
+            cars.RemoveAll(car => car.Vin == vin);
+            cars.Add(new Car(vin, newName));
+            Flush();
+        }
+
         public void AddNewCar(Car car, string ownerName)
         {
             var deleted = cars.RemoveAll(_car => _car.Vin.Equals(car.Vin));
