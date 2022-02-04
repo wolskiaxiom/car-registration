@@ -21,7 +21,7 @@ namespace CarRegistration.Views
     /// </summary>
     public partial class AddNewUserForm : UserControl
     {
-        UserService UserService;
+        readonly UserService UserService;
         public AddNewUserForm()
         {
             InitializeComponent();
@@ -35,10 +35,13 @@ namespace CarRegistration.Views
             string password = PasswordTextBox.Password;
             if (role == Role.User && String.IsNullOrEmpty(username) && String.IsNullOrEmpty(password))
             {
-
+                StatusLabel.Content = "Coś poszło nie tak. Upewnij się, że wybrałeś odpowiednią rolę oraz wpisałeś login/hasło.";
+                StatusLabel.Foreground = Brushes.Red;
             } else
             {
                 UserService.AddNewUser(username, password, role);
+                StatusLabel.Content = "Pomyślnie utworzyłeś nowego użytkownika!";
+                StatusLabel.Foreground = Brushes.Green;
             }
         }
 

@@ -23,8 +23,8 @@ namespace CarRegistration.Views
     {
         Car? Car;
         ObservableCollection<HistoryEntry> CarHistory;
-        CarService CarService = new CarService();
-        App current;
+        readonly CarService CarService = new CarService();
+        readonly App current;
         
         public CarReportView()
         {
@@ -65,7 +65,7 @@ namespace CarRegistration.Views
 
         private void AddHistoryEntryClick(object sender, RoutedEventArgs e)
         {
-            long mileageVal = 0;
+            long mileageVal;
             try
             {
                  mileageVal = long.Parse(mileageInput.Text);
@@ -81,14 +81,14 @@ namespace CarRegistration.Views
                 CarHistory.Add(newEntry);
             } else if (current.role == Role.Mechanic)
             {
-                HistoryEntry entry = CarHistory[CarHistory.Count - 1];
+                HistoryEntry entry = CarHistory[^1];
                 HistoryEntry newEntry = new HistoryEntry(entry.Vin, entry.OwnerName, mileageVal);
                 CarService.AddHistoryEntry(newEntry);
                 CarHistory.Add(newEntry);
             }
         }
 
-        private void carHistoryListBindingSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CarHistoryListBindingSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (current.role == Role.Clerk)
             {
@@ -108,7 +108,7 @@ namespace CarRegistration.Views
             {
                 return;
             }
-            long mileageVal = 0;
+            long mileageVal;
             try
             {
                 mileageVal = long.Parse(mileageInput.Text);

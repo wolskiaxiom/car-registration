@@ -40,10 +40,10 @@
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="4" >
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <ScrollViewer Width="400" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="10, 10, 10, 10">
                         <Grid>
-                            <ListView Name="carHistoryListBinding"  Visibility="Collapsed" SelectionChanged="carHistoryListBindingSelectionChanged">
+                            <ListView Name="carHistoryListBinding"  Visibility="Collapsed" SelectionChanged="CarHistoryListBindingSelectionChanged">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <WrapPanel>

@@ -7,7 +7,6 @@ namespace CarRegistration.ViewModels
 {
     class AddNewUserFormViewModel
     {
-        
         public bool CheckPrivileges(Role role)
         {
             if (role == Role.Clerk)

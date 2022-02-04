@@ -18,8 +18,8 @@ namespace CarRegistration.Views
 {
     public partial class LoginPage : UserControl
     {
-        App currentApp;
-        UserService UserService;
+        readonly App currentApp;
+        readonly UserService UserService;
 
         public LoginPage()
         {
