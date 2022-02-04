@@ -15,7 +15,6 @@ namespace CarRegistration
 
     public partial class App : Application
     {
-
         public Role role = Role.User;
 
     }

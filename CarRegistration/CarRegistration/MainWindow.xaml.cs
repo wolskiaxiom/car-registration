@@ -21,20 +21,49 @@ namespace CarRegistration
     /// </summary>
     public partial class MainWindow : Window
     {
+        readonly App current;
         public MainWindow()
         {
             InitializeComponent();
-            App current = (App) App.Current;
+            current = (App)App.Current;
         }
 
         private void NavigateToNewCarForm(object sender, RoutedEventArgs e)
         {
-            DataContext = new AddNewCarFormViewModel();
+            RoleWarning.Text = String.Empty;
+            AddNewCarFormViewModel viewModel = new AddNewCarFormViewModel();
+            if (viewModel.CheckPrivileges(current.role))
+            {
+                DataContext = viewModel;
+            }
+            else
+            {
+                RoleWarning.Text = "Nie masz wystarczających uprawnień, aby dodać nowy samochód!";
+            }
         }
 
-        private void NavigateToUpdateCarForm(object sender, RoutedEventArgs e)
+        private void NavigateToLoginPage(object sender, RoutedEventArgs e)
         {
-            DataContext = new UpdateCarFormViewModel();
+            RoleWarning.Text = String.Empty;
+            DataContext = new LoginPageViewModel();
+        }
+
+        private void NavigateToBrowseCars(object sender, RoutedEventArgs e)
+        {
+            RoleWarning.Text = String.Empty;
+            DataContext = new CarReportViewModel();
+        }
+
+        private void NavigateToNewUserForm(object sender, RoutedEventArgs e)
+        {
+            RoleWarning.Text = String.Empty;
+            AddNewUserFormViewModel viewModel = new AddNewUserFormViewModel();
+            if (viewModel.CheckPrivileges(current.role)) {
+                DataContext = viewModel;
+            } else
+            {
+                RoleWarning.Text = "Nie masz wystarczających uprawnień, aby dodać użytkownika!";
+            }
         }
     }
 }

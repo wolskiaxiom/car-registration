@@ -7,13 +7,19 @@
         xmlns:viewmodels="clr-namespace:CarRegistration.ViewModels"
         xmlns:views="clr-namespace:CarRegistration.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="System rejestracji pojazdów" Height="600" Width="1200">
     <Window.Resources>
         <DataTemplate x:Name="AddNewCarFormTemplate" DataType="{x:Type viewmodels:AddNewCarFormViewModel}">
             <views:AddNewCarForm DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate x:Name="UpdateCarFormTemplate" DataType="{x:Type viewmodels:UpdateCarFormViewModel}">
-            <views:UpdateCarForm DataContext="{Binding}"/>
+        <DataTemplate x:Name="LoginPageTemplate" DataType="{x:Type viewmodels:LoginPageViewModel}">
+            <views:LoginPage DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="CarReportTemplate" DataType="{x:Type viewmodels:CarReportViewModel}">
+            <views:CarReportView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="AddNewUserFormTemplate" DataType="{x:Type viewmodels:AddNewUserFormViewModel}">
+            <views:AddNewUserForm DataContext="{Binding}"/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -30,11 +36,11 @@
 
         <DockPanel Background="Gray" Grid.Row="0" Grid.Column="0">
             <StackPanel Orientation="Horizontal" >
-                <Button Content="Login"  Margin="5"/>
-                <Button Content="Browse Cars"  Margin="5"/>
-                <Button Content="Add New Car" Click="NavigateToNewCarForm" Margin="5"/>
-                <Button Content="Update Car" Click="NavigateToUpdateCarForm" Margin="5"/>
-                <Button Content="Add New User"  Margin="5"/>
+                <Button Content="Logowanie" FontWeight="ExtraBold" FontSize="15" Background="Transparent" BorderBrush="Transparent" Foreground="White" Padding="10, 0" Margin="10, 0" Click="NavigateToLoginPage"/>
+                <Button Content="Baza samochodów"  FontWeight="ExtraBold" FontSize="15" Background="Transparent" BorderBrush="Transparent" Foreground="White" Padding="10, 0" Margin="10, 0"  Click="NavigateToBrowseCars"/>
+                <Button Content="Dodawanie samochodu" Click="NavigateToNewCarForm" FontWeight="ExtraBold" FontSize="15" Background="Transparent" BorderBrush="Transparent" Foreground="White" Padding="10, 0" Margin="10, 0" />
+                <Button Content="Dodawanie użytkownika" FontWeight="ExtraBold" FontSize="15" Background="Transparent" BorderBrush="Transparent" Foreground="White" Padding="10, 0" Margin="10, 0"  Click="NavigateToNewUserForm"/>
+                <TextBlock x:Name="RoleWarning" FontStyle="Italic" HorizontalAlignment="Right"  Text="" TextWrapping="Wrap" VerticalAlignment="Center"/>
             </StackPanel>
         </DockPanel>
 

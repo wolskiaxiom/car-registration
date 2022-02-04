@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CarRegistration.ViewModels
 {
-    class UpdateCarFormViewModel
+    class CarReportViewModel
     {
     }
 }

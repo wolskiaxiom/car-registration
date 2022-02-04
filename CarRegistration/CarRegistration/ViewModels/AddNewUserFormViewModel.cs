@@ -1,16 +1,15 @@
-﻿using System;
+﻿using CarRegistrationLibrary.Domain;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using System.ComponentModel;
-using CarRegistrationLibrary.Domain;
 
 namespace CarRegistration.ViewModels
 {
-    public class AddNewCarFormViewModel
+    class AddNewUserFormViewModel
     {
         public bool CheckPrivileges(Role role)
         {
-            if (role == Role.Producer)
+            if (role == Role.Clerk)
             {
                 return true;
             }
