@@ -43,6 +43,8 @@ namespace CarRegistration.Views
                 CarNameLabel.Content = "";
                 SearchResultMessage.Content = "Nie udało się znaleźć pojazdu o podanym numerze VIN.";
                 carHistoryListBinding.ItemsSource = System.Linq.Enumerable.Empty<HistoryEntry>();
+                carHistoryListBinding.Visibility = Visibility.Collapsed;
+                FormGrid.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -117,7 +119,10 @@ namespace CarRegistration.Views
             {
                 return;
             }
-
+            if (selectedIndex < 0)
+            {
+                selectedIndex = 0;
+            }
             HistoryEntry oldEntry = CarHistory[selectedIndex];
             HistoryEntry newEntry = new HistoryEntry(Car.Value.Vin, oldEntry.OwnerName, mileageVal);
             CarService.ReplaceHistoryEntry(oldEntry, newEntry);

@@ -30,15 +30,16 @@ namespace CarRegistration.Views
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            Role role = RoleMapper.FromStringToRole(((ComboBoxItem)RoleSelection.SelectedItem).Content.ToString());
+            ComboBoxItem comboBoxItem = (ComboBoxItem) RoleSelection.SelectedItem;
             string username = UsernameTextBox.Text;
             string password = PasswordTextBox.Password;
-            if (role == Role.User && String.IsNullOrEmpty(username) && String.IsNullOrEmpty(password))
+            if (comboBoxItem == null || String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password))
             {
-                StatusLabel.Content = "Coś poszło nie tak. Upewnij się, że wybrałeś odpowiednią rolę oraz wpisałeś login/hasło.";
+                StatusLabel.Content = "Coś poszło nie tak. Upewnij się, że podałeś wszystkie wartości.";
                 StatusLabel.Foreground = Brushes.Red;
             } else
             {
+                Role role = RoleMapper.FromStringToRole(((ComboBoxItem)RoleSelection.SelectedItem).Content.ToString());
                 UserService.AddNewUser(username, password, role);
                 StatusLabel.Content = "Pomyślnie utworzyłeś nowego użytkownika!";
                 StatusLabel.Foreground = Brushes.Green;

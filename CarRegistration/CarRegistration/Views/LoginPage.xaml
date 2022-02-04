@@ -9,29 +9,29 @@
     <Border Background="White">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="48" />
+                <RowDefinition Height="0" />
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,0,0" Height="40">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" >
                     <TextBlock Text="" FontSize="20" Margin="8,2,0,0" FontWeight="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe WP" />
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid Name="NotLoggedInGrid" Grid.Column="1" Width="380">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                        <Label Content="Zaloguj sie" Margin="0,4,0,12" HorizontalAlignment="Center"  FontFamily="Segoe UI Semilight" FontSize="26"></Label>
+                        <Label Content="Zaloguj sie" Margin="0,10,0,40" HorizontalAlignment="Center"  FontFamily="Segoe UI Semilight" FontSize="26" ></Label>
                         <Grid Margin="0,0,0,8">
                             <TextBlock Margin="4,1,2,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Height="24" Text="Nazwa uzytkownika"/>
                         </Grid>
                         <Grid Margin="0,0,0,8">
-                            <TextBox Name="UserNameTextBox" CharacterCasing="Lower" TabIndex="0" />
+                            <TextBox Height="30" Name="UserNameTextBox" HorizontalContentAlignment="Center" CharacterCasing="Lower" TabIndex="0" FontSize="18" VerticalContentAlignment="Center"/>
                         </Grid>
                         <Grid Margin="0,0,0,8">
                             <TextBlock Margin="4,1,2,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Height="24" Text="Hasło"/>
                         </Grid>
-                        <Grid Margin="0,0,0,8">
-                            <PasswordBox HorizontalAlignment="Center" HorizontalContentAlignment="Center" Background="Transparent" VerticalContentAlignment="Center" Name="PasswordBox" Height="36" Width="220" TabIndex="1" />
+                        <Grid Margin="0,0,0,30">
+                            <PasswordBox HorizontalAlignment="Center" HorizontalContentAlignment="Center" Background="Transparent" VerticalContentAlignment="Center" Name="PasswordBox" Height="30" Width="220" TabIndex="1" />
                         </Grid>
                         <Button Click="LoginClick" Content="Login" Width="220" Height="36" TabIndex="3" Margin="0,0,0,32"/>
                         <Grid Margin="0,0,0,8">
@@ -40,10 +40,13 @@
                     </StackPanel>
                 </Grid>
                 <Grid x:Name="LoggedInGrid">
-                    <StackPanel Orientation="Vertical">
-                        <Label Name="LoggedInLabel" HorizontalAlignment="Center" FontSize="30">Jesteś zalogowany jako</Label>
-                        <Button Name="LogoutButton" Margin="30" HorizontalAlignment="Center" FontSize="30" Click="LogoutButtonClick">Wyloguj</Button>
-                    </StackPanel>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Name="LoggedInLabel" Grid.Row="0" HorizontalAlignment="Center" FontSize="30" Margin="30">Jesteś zalogowany jako</Label>
+                    <Button Name="LogoutButton"  Grid.Row="2" Padding="20" Margin="30" HorizontalAlignment="Center" FontSize="30" Click="LogoutButtonClick">Wyloguj</Button>
                 </Grid>
             </Grid>
         </Grid>

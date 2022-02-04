@@ -31,9 +31,19 @@ namespace CarRegistration.Views
         {
             if (currentApp.role == Role.Producer)
             {
-                Car newCar = new Car(Vin.Text, CarName.Text);
-                CarService.AddNewCar(newCar, OwnerName.Text);
-
+               
+                if (String.IsNullOrEmpty(Vin.Text) || String.IsNullOrEmpty(OwnerName.Text) || String.IsNullOrEmpty(CarName.Text))
+                {
+                    StatusLabel.Content = "Coś poszło nie tak. Upewnij się, że wpisałeś wszystkie wartości.";
+                    StatusLabel.Foreground = Brushes.Red;
+                }
+                else
+                {
+                    Car newCar = new Car(Vin.Text, CarName.Text);
+                    CarService.AddNewCar(newCar, OwnerName.Text);
+                    StatusLabel.Content = "Pomyślnie dodałeś samochód do bazy";
+                    StatusLabel.Foreground = Brushes.Green;
+                }
                 Vin.Text = "";
                 OwnerName.Text = "";
                 CarName.Text = "";

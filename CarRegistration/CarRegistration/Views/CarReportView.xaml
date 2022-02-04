@@ -11,7 +11,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="80"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
@@ -29,7 +29,7 @@
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="2">
-                <Label Name="SearchResultMessage" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="8"/>
+                <Label Name="SearchResultMessage" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
             </Grid>
             <Grid Grid.Row="3">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,2,2,2">
@@ -60,9 +60,10 @@
                     </ScrollViewer>
                     <Grid Background="White" Visibility="Collapsed" Name="FormGrid">
                         <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition/>
-                            <RowDefinition/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
                         </Grid.RowDefinitions>
 
                         <Grid.ColumnDefinitions>
@@ -75,7 +76,7 @@
 
                         <Label Name="mileageLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Grid.Row="1" Grid.Column="0">Przebieg</Label>
                         <TextBox Name="mileageInput" Grid.Row="1" Grid.Column="1" Margin="5" Height="20" Width="250"/>
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" >
                             <Button Name="addButton" Margin="5" Width="80" Click="AddHistoryEntryClick">Dodaj</Button>
                             <Button Name="updateButton" Margin="5" Width="80" Visibility="Collapsed" Click="UpdateButtonClick">Aktualizuj</Button>
                         </StackPanel>

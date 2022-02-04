@@ -7,8 +7,7 @@
         xmlns:viewmodels="clr-namespace:CarRegistration.ViewModels"
         xmlns:views="clr-namespace:CarRegistration.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        >
+        Title="System rejestracji pojazdów" Height="600" Width="1200">
     <Window.Resources>
         <DataTemplate x:Name="AddNewCarFormTemplate" DataType="{x:Type viewmodels:AddNewCarFormViewModel}">
             <views:AddNewCarForm DataContext="{Binding}"/>
@@ -37,11 +36,11 @@
 
         <DockPanel Background="Gray" Grid.Row="0" Grid.Column="0">
             <StackPanel Orientation="Horizontal" >
-                <Button Content="Logowanie"  Margin="5" Click="NavigateToLoginPage"/>
-                <Button Content="Baza samochodów"  Margin="5" Click="NavigateToBrowseCars"/>
-                <Button Content="Dodawanie samochodu" Click="NavigateToNewCarForm" Margin="5"/>
-                <Button Content="Dodawanie użytkownika"  Margin="5" Click="NavigateToNewUserForm"/>
-                <TextBlock x:Name="RoleWarning" FontStyle="Italic" HorizontalAlignment="Left"  Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="15,20,5,5"/>
+                <Button Content="Logowanie" FontWeight="ExtraBold" FontSize="15" Background="Transparent" BorderBrush="Transparent" Foreground="White" Padding="10, 0" Margin="10, 0" Click="NavigateToLoginPage"/>
+                <Button Content="Baza samochodów"  FontWeight="ExtraBold" FontSize="15" Background="Transparent" BorderBrush="Transparent" Foreground="White" Padding="10, 0" Margin="10, 0"  Click="NavigateToBrowseCars"/>
+                <Button Content="Dodawanie samochodu" Click="NavigateToNewCarForm" FontWeight="ExtraBold" FontSize="15" Background="Transparent" BorderBrush="Transparent" Foreground="White" Padding="10, 0" Margin="10, 0" />
+                <Button Content="Dodawanie użytkownika" FontWeight="ExtraBold" FontSize="15" Background="Transparent" BorderBrush="Transparent" Foreground="White" Padding="10, 0" Margin="10, 0"  Click="NavigateToNewUserForm"/>
+                <TextBlock x:Name="RoleWarning" FontStyle="Italic" HorizontalAlignment="Right"  Text="" TextWrapping="Wrap" VerticalAlignment="Center"/>
             </StackPanel>
         </DockPanel>
 

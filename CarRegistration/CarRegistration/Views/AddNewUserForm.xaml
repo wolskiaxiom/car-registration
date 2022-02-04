@@ -31,21 +31,21 @@
             <TextBlock Text="Dodaj nowego użytkownika" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" FontSize="30" VerticalAlignment="Center"/>
 
             <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">Rola</Label>
-            <ComboBox Name="RoleSelection" Grid.Row="2" Grid.Column="2"  Margin="10">
+            <ComboBox Name="RoleSelection" Grid.Row="2" Grid.Column="2"  Margin="10"  Grid.ColumnSpan="2" Width="300" HorizontalAlignment="Left">
                 <ComboBoxItem>Urzędnik</ComboBoxItem>
                 <ComboBoxItem>Producent</ComboBoxItem>
                 <ComboBoxItem>Mechanik</ComboBoxItem>
             </ComboBox>
             
             <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1">Nazwa użytkownika</Label>
-            <TextBox Name="UsernameTextBox" Margin="10" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" />
+            <TextBox Name="UsernameTextBox" Margin="10" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"  HorizontalAlignment="Left"  Width="300"/>
 
             <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1">Hasło</Label>
-            <PasswordBox Name="PasswordTextBox" Margin="10" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" />
+            <PasswordBox HorizontalAlignment="Left" Name="PasswordTextBox" Margin="10" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Width="300"/>
 
             <Button Name="SubmitButton" Grid.Column="2" Grid.Row="6" Click="SubmitButton_Click">Dodaj</Button>
 
-            <Label Name="StatusLabel"  Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" FontWeight="Light" FontStyle="Italic"></Label>
+            <Label Name="StatusLabel"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" FontStyle="Italic"></Label>
         </Grid>
     </Border>
 </UserControl>
